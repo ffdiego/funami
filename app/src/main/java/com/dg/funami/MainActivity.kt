@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,7 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.dg.funami.ui.theme.FunamiTheme
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
@@ -30,8 +31,17 @@ class MainActivity : ComponentActivity() {
         // Adiciona um ouvinte para eventos de clique nos itens do menu
         menu.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_item_1 -> clicouDinossauro(item.itemId)
-                R.id.nav_item_2 -> clicouDinossauro(item.itemId)
+                R.id.nav_item_1 -> {
+                    val fragment = PlayFragment()
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.replace(R.id.tela, fragment)
+
+
+                }
+                R.id.nav_item_2 -> {
+
+                }
             }
             true
         }
