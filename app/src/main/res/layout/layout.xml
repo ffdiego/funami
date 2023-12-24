@@ -13,9 +13,7 @@
         android:textAlignment="center"
         android:textColor="#3E3E3E"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songName" />
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,9 +21,7 @@
         android:layout_height="444px"
         android:layout_marginTop="32dp"
         android:src="@mipmap/kdsticon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+/>
 
     <TextView
         android:id="@+id/songName"
@@ -37,10 +33,7 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+ />
 
     <TextView
         android:id="@+id/radioName"
@@ -55,8 +48,5 @@
         android:text="K-DST"
         android:textColor="#9d7119"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+ />
 </LinearLayout>
