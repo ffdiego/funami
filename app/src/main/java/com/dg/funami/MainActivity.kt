@@ -2,53 +2,49 @@ package com.dg.funami
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.dg.funami.ui.theme.FunamiTheme
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
-        // Define os itens do menu
-        val menu = NavigationView(this).apply {
-            inflateMenu(R.menu.menu_main)
-        }
 
-        Log.d("zzz", "vai começar")
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
 
         // Adiciona um ouvinte para eventos de clique nos itens do menu
-        menu.setNavigationItemSelectedListener { item ->
+        navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_item_1 -> {
-                    val fragment = PlayFragment()
-                    val fragmentManager = supportFragmentManager
-                    val fragmentTransaction = fragmentManager.beginTransaction()
-                    fragmentTransaction.replace(R.id.tela, fragment)
-
-
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.tela, PlayFragment())
+                        .commit()
+                    toggleDrawer()
                 }
                 R.id.nav_item_2 -> {
-
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.tela, ManagerFragment())
+                        .commit()
+                    toggleDrawer()
                 }
             }
             true
         }
-
     }
 
-    fun clicouDinossauro(id: Int) {
-        Log.d("zzz", "clicou $id")
+    fun toggleDrawer(view: View? = null) {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.mainDrawerLayout)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
     }
 }
