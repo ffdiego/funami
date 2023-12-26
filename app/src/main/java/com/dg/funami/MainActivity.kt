@@ -1,5 +1,6 @@
 package com.dg.funami
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,9 +9,11 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.dg.funami.models.RadioStation
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
+    private var radioStation: RadioStation? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
@@ -46,5 +49,11 @@ class MainActivity : AppCompatActivity() {
         } else {
             drawerLayout.openDrawer(GravityCompat.START)
         }
+    }
+
+    fun tocaMusica(view: View? = null) {
+        if(view != null) {
+            val radioStation = RadioStation(view.context)
+            radioStation.play()        }
     }
 }

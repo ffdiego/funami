@@ -1,16 +1,25 @@
 package com.dg.funami.models
 
+import android.content.Context
 import android.media.MediaPlayer
+import java.io.File
+import java.io.IOException
 
-class RadioStation(val mediaPlayer: MediaPlayer, val game: GameNames) {
-    var name: String? = null
-    var url: String? = null
-    var image: String? = null
-    val path: String = ""
+class RadioStation(private val context: Context) {
+    private val mediaPlayer: MediaPlayer = MediaPlayer()
 
     fun play() {
-        this.mediaPlayer.setDataSource(this.path)
-        this.mediaPlayer.seekTo(this.mediaPlayer.duration / 2)
-        this.mediaPlayer.start()
+        val fileDir = context.filesDir
+        val filePath = File(fileDir, "1.ogg").absolutePath
+
+        this.mediaPlayer?.let {
+            try {
+                it.setDataSource(filePath)
+                it.prepare()
+                it.start()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 }
